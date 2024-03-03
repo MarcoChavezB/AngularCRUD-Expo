@@ -6,7 +6,7 @@ import {SidemenuComponent} from "../sidemenu/sidemenu.component";
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    RouterOutlet, SidemenuComponent
+    RouterOutlet, SidemenuComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
