@@ -50,6 +50,18 @@
 
       Submit
     </button>
+    <div *ngIf="errors" class="alert">
+      <div *ngIf="errors.name">
+        Error en el nombre: {{ errors.name[0] }}
+      </div>
+      <div *ngIf="errors.email">
+        Error en el correo electrónico: {{ errors.email[0] }}
+      </div>
+      <div *ngIf="errors.password">
+        Error en la contraseña: {{ errors.password[0] }}
+      </div>
+    </div>
+
     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
       Already have an account? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
     </p>

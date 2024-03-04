@@ -20,7 +20,7 @@ export class RegisterFormComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
   })
-
+  errors: any;
   constructor(
     private regService: UsersService,
     private router: Router
@@ -35,8 +35,12 @@ export class RegisterFormComponent {
     };
     this.regService.addUser(user).subscribe(
       res => {
-        console.log(res);
         this.router.navigate(['']);
+      },
+      err => {
+        if (err.error.error){
+          this.errors = err.error.error;
+        }
       }
     );
   }

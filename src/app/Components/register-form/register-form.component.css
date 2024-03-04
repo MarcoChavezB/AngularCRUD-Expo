@@ -1,9 +1,6 @@
 .alert {
-  color: #721c24;
-  background-color: #f8d7da;
+  color: #ef3042;
   border-color: #f5c6cb;
-  padding: .75rem 1.25rem;
-  margin-bottom: 1rem;
   border: 1px solid transparent;
   border-radius: .25rem;
 }
