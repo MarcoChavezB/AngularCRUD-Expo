@@ -3,6 +3,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import {WelcomeComponent} from "./Views/welcome/welcome.component";
 import { IndexComponent } from './Views/User/index/index.component';
 import {RegisterFormComponent} from "./Components/register-form/register-form.component";
+import {PageNotFoundComponent} from "./Views/page-not-found/page-not-found.component";
 
 export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent,
@@ -17,5 +18,9 @@ export const routes: Routes = [
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
   }
   ];
