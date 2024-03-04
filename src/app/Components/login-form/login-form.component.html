@@ -1,5 +1,5 @@
 <app-form-layout>
-    <form class="space-y-4 md:space-y-6">
+    <form class="space-y-4 md:space-y-6" (ngSubmit)="onSubmit()">
       <div>
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
         <input type="email" name="email" id="email"
@@ -13,7 +13,6 @@
       </div>
       <button type="submit"
               class="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2">
-  
         Submit
       </button>
       <p class="text-sm font-light text-gray-500 dark:text-gray-400">
