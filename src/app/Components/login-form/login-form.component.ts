@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import {FormLayoutComponent} from "../../Layouts/form-layout/form-layout.component";
 import { FormsModule } from '@angular/forms';
 import {UserLogin} from "../../Models/User.interface";
-import { Router } from '@angular/router';
 import {UsersService} from "../../Services/users.service";
+import {AuthService} from "../../Services/auth.service";
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,9 +17,11 @@ export class LoginFormComponent {
   public email = '';
   public password = '';
   public notfound = false;
+  public error = false;
+  public passwordVerify = false;
   constructor( 
     private loginService: UsersService,
-    private router: Router
+    private authService: AuthService
     ) {
     this.email = '';
     this.password = '';
@@ -27,16 +29,25 @@ export class LoginFormComponent {
 
   onSubmit() {
     this.notfound = false;
+    this.error = false;
+    this.passwordVerify = false;
     const user: UserLogin = {
       email: this.email || '',
       password: this.password || '',
     };
-    console.log(user);
 
     this.loginService.loginUser(user).subscribe(
       res => {
-        console.log(res);
-        this.router.navigate(['']);
+        this.authService.saveTokenResponse(res.jwt, res.data)
+      },
+      error => {
+        if (error.status == 404){
+          this.notfound = true;
+        } else if(error.status == 401) {
+          this.passwordVerify = true;
+        }else {
+          this.error = true;
+        }
       }
     );  
   }
