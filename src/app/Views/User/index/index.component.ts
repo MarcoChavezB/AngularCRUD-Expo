@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { UserInterface } from '../../../Models/User.interface';
+import { User, UserInterface } from '../../../Models/User.interface';
 import { UsersService } from '../../../Services/users.service';
 import { CommonModule } from '@angular/common';
+import { response } from 'express';
 
 
 @Component({
@@ -12,8 +13,10 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
+  
 })
 export class IndexComponent {
+
   Users: UserInterface[] = []
 
   constructor(
@@ -26,8 +29,8 @@ export class IndexComponent {
 
   getUsers(){
     this.dataSVu.getUsers().subscribe(
-      users => {
-        this.Users = users
+      response => {
+        this.Users = response
         console.log(this.Users)
       }
     )
