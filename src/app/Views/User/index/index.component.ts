@@ -12,12 +12,10 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
-
 })
 export class IndexComponent {
 
   Users: UserInterface[] = []
-
 
   constructor(
     private readonly dataSVu: UsersService
@@ -31,7 +29,6 @@ export class IndexComponent {
     this.dataSVu.getUsers().subscribe(
       response => {
         this.Users = Object.values(response)
-        console.log(Object.values(response))
       }
     )
   }
