@@ -6,11 +6,12 @@ import {UsersService} from "../../Services/users.service";
 import {AuthService} from "../../Services/auth.service";
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
   standalone: true,
-  imports: [FormLayoutComponent, FormsModule, CommonModule],
+  imports: [FormLayoutComponent, FormsModule, CommonModule, RouterLink],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
 })
@@ -44,7 +45,6 @@ export class LoginFormComponent {
       email: this.email || '',
       password: this.password || '',
     };
-
     this.loginService.loginUser(user).subscribe(
       res => {
         this.authService.saveTokenResponse(res.jwt, res.data)
@@ -55,7 +55,7 @@ export class LoginFormComponent {
         } else if(error.status == 401) {
           this.passwordVerify = true;
         }else {
-          this.error = true;
+          this.error = true
         }
       }
     );  

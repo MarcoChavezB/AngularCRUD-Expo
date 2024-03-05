@@ -8,6 +8,7 @@ import { LoggingInterceptorProvider } from './Interceptors/Logging/logging.inter
 
 const combinedRoutes = [...routes, ...routesAuth];
 
+console.log(combinedRoutes)
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(combinedRoutes),

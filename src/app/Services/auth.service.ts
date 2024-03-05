@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UsersService } from "./users.service";
 import { Observable, map, catchError, of } from 'rxjs';
 import { response } from 'express';
-
+import { UserInterface } from '../Models/User.interface';
 @Injectable({
   providedIn: 'root'
 })
@@ -31,10 +31,10 @@ export class AuthService {
     return null;
   }
 
-  getUser() {
+  getUser(): UserInterface | null {
     const userString = localStorage.getItem('user');
     if (userString) {
-      return JSON.parse(userString);
+      return JSON.parse(userString) as UserInterface;
     }
     return null;
   }

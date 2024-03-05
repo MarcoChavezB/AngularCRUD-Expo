@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Injectable, inject, input } from '@angular/core';
 import {routes} from "../../app.routes";
 import {RouterLink, RouterLinkActive} from "@angular/router";
 import {AuthService} from "../../Services/auth.service";
+import { UserInterface } from '../../Models/User.interface';
+
 
 @Component({
   selector: 'app-sidemenu',
@@ -14,7 +16,8 @@ import {AuthService} from "../../Services/auth.service";
   styleUrl: './sidemenu.component.css'
 })
 export class SidemenuComponent {
-
+  
+  public user: UserInterface | null = null;
   constructor( 
     private authService: AuthService,
     ) {}
@@ -27,5 +30,8 @@ export class SidemenuComponent {
 
     exit() {
       this.authService.logout()
+    }
+    ngOnInit(): void{
+      this.user = this.authService.getUser()
     }
 }
