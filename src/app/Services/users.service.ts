@@ -12,7 +12,7 @@ export class UsersService {
   private urlIndex = environment.index
   private urlStore = environment.store
   private urlLogin = environment.login
-  private urlShow = environment.show
+  private urlShow = environment.show // Add the missing 'show' property
   private urlUpdate = environment.update
   private urlDelete = environment.delete 
 
@@ -35,6 +35,7 @@ export class UsersService {
   loginUser(user: UserLogin): Observable<LoginResponseInterface>{
     return this.http.post<LoginResponseInterface>(this.urlLogin, user)
   }
+  
 
   getUser(id: string): Observable<UserInterface> {
     return this.http.get<UserInterface>(this.urlShow + id)
@@ -43,6 +44,7 @@ export class UsersService {
     const url = `${this.urlUpdate}/${userId}`;
     return this.http.put<UserUpdateInterface>(url, user);
   }
+
  
   deleteUser(userId: number): Observable<UserDeleteInterface> {
     const urlDelete = `${this.urlDelete}/${userId}`; 
