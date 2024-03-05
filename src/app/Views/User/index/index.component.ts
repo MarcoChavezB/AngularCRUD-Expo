@@ -28,7 +28,8 @@ export class IndexComponent {
   getUsers(){
     this.dataSVu.getUsers().subscribe(
       response => {
-        this.Users = Object.values(response)
+        this.Users = response 
+        
       }
     )
   }
@@ -37,12 +38,10 @@ export class IndexComponent {
       this.dataSVu.deleteUser(id).subscribe(
         () => {
           console.error('se elimino el usuario');
-          // Eliminación exitosa, actualiza la lista de usuarios
           this.getUsers();
         },
         error => {
           console.error('Error al eliminar usuario:', error);
-          // Maneja el error de eliminación aquí
         }
       );
     }

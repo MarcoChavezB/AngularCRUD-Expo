@@ -1,12 +1,15 @@
 <main>
-  <div 
-  *ngIf="!Users.length && !loading"
-  class="loadingComp">
-  <span class="loading loading-ring loading-lg"></span>
+<!-- si no hay usuarios -->
+<div *ngIf="!Users.length && !loading" class="flex items-center justify-center h-96">
+  <div class="text-center">
+    <h1 class="text-3xl font-semibold text-gray-800 dark:text-white">No hay usuarios</h1>
+    <p class="text-gray-500 dark:text-gray-400">No se encontraron usuarios</p>
+  </div>
 </div>
 
-
-  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <div
+  *ngIf="Users.length && !loading"
+   class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
             <tr>
