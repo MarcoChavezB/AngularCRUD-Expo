@@ -3,6 +3,7 @@ import { User, UserInterface } from '../../../Models/User.interface';
 import { UsersService } from '../../../Services/users.service';
 import { CommonModule } from '@angular/common';
 import { response } from 'express';
+import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class IndexComponent {
   ) { }
 
   ngOnInit(): void {
+    console.log(environment.index)
     this.getUsers()
   }
 
