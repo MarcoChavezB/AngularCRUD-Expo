@@ -12,6 +12,7 @@ export class UsersService {
   private urlIndex = environment.index
   private urlStore = environment.store
   private urlLogin = environment.login
+  private urlShow = environment.show
   private urlUpdate = environment.update
   private urlDelete = environment.delete 
 
@@ -19,13 +20,13 @@ export class UsersService {
     private readonly http: HttpClient
   ) { }
 
-
+  ngOnInit(){
+    this.getUsers()
+  }
 
   getUsers():Observable<UserInterface[]>{
     return this.http.get<UserInterface[]>(this.urlIndex)
   }
-
-
 
   storeUser(user: UserRegistrationInterface): Observable<UserRegistrationInterface>{
     return this.http.post<UserRegistrationInterface>(this.urlStore, user)
@@ -35,8 +36,11 @@ export class UsersService {
     return this.http.post<LoginResponseInterface>(this.urlLogin, user)
   }
 
+  getUser(id: string): Observable<UserInterface> {
+    return this.http.get<UserInterface>(this.urlShow + id)
+  }
   updateUser(user: UserUpdateInterface, userId: number): Observable<UserUpdateInterface> {
-    const url = `${this.urlUpdate}/${userId}`; 
+    const url = `${this.urlUpdate}/${userId}`;
     return this.http.put<UserUpdateInterface>(url, user);
   }
  
