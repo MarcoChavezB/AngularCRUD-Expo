@@ -36,6 +36,33 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ],
               "budgets": [
                 {
                   "type": "initial",
@@ -63,6 +90,9 @@
           "configurations": {
             "production": {
               "buildTarget": "CRUD_expo_angular:build:production"
+            },
+            "local": {
+              "buildTarget": "CRUD_expo_angular:build:local"
             },
             "development": {
               "buildTarget": "CRUD_expo_angular:build:development"
@@ -96,5 +126,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "99ed39bd-12dd-432a-be7e-7d2e006d650f"
   }
 }

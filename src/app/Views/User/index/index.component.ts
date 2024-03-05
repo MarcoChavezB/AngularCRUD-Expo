@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { UserRegistrationInterface, UserInterface } from '../../../Models/User.interface';
+import { UserInterface } from '../../../Models/User.interface';
 import { UsersService } from '../../../Services/users.service';
 import { CommonModule } from '@angular/common';
-import { response } from 'express';
 
 
 @Component({
@@ -13,19 +12,16 @@ import { response } from 'express';
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
-
 })
 export class IndexComponent {
-
+  loading: boolean = false;
   Users: UserInterface[] = []
-
 
   constructor(
     private readonly dataSVu: UsersService
   ) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit')
     this.getUsers()
   }
 
@@ -33,8 +29,22 @@ export class IndexComponent {
     this.dataSVu.getUsers().subscribe(
       response => {
         this.Users = Object.values(response)
-        console.log(Object.values(response))
       }
     )
+  }
+  deleteUser(id: number) {
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+      this.dataSVu.deleteUser(id).subscribe(
+        () => {
+          console.error('se elimino el usuario');
+          // Eliminación exitosa, actualiza la lista de usuarios
+          this.getUsers();
+        },
+        error => {
+          console.error('Error al eliminar usuario:', error);
+          // Maneja el error de eliminación aquí
+        }
+      );
+    }
   }
 }
