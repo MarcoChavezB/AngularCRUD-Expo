@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {UsersService} from "../../Services/users.service";
 import {UserInterface} from "../../Models/User.interface";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-show-user',
@@ -13,10 +14,14 @@ export class ShowUserComponent {
   User: UserInterface | undefined
   constructor(
     private getUserService: UsersService,
+    private route: ActivatedRoute
     ) {}
 
   ngOnInit(): void {
-    this.fetchUser("1")
+    this.route.paramMap.subscribe(params => {
+      const userId = params.get('id')
+      if (userId) this.fetchUser(userId)
+    })
   }
 
   fetchUser(id: string){

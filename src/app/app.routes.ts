@@ -15,8 +15,9 @@ export const routes: Routes = [
       {path: 'update/:id', component: UpdateComponent },
       {path: 'users', component: IndexComponent, title: 'Users',
       children: [
-        { path: 'delete/:id', component: DeleteComponent, title: 'Delete' }
+        { path: 'delete/:id', component: DeleteComponent, title: 'Delete' },
       ]},
+      {path: 'show/:id', loadChildren: () => import('./show-user/show-user.module').then(m => m.ShowUserModule)},
       {path: 'login', component: LoginFormComponent, title: 'login'},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
     ]

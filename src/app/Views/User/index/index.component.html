@@ -1,5 +1,5 @@
 <main>
-  <div 
+  <div
   *ngIf="!Users.length && !loading"
   class="loadingComp">
   <span class="loading loading-ring loading-lg"></span>
@@ -28,10 +28,10 @@
             </tr>
         </thead>
         <tbody>
-          
+
           <tr *ngFor="let user of Users" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{user.name}}
+              <a [routerLink]="['/dashboard/show', user.id]">{{user.name}}</a>
             </th>
             <td class="px-6 py-4">
               {{user.email}}
@@ -44,7 +44,7 @@
             </td>
             <td class="px-6 py-4">
               <a href="#" >
-            
+
               </a>
               <a href="#" (click)="deleteUser(user.id)">
                 <svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -58,9 +58,9 @@
 
             </td>
           </tr>
-          
+
         </tbody>
     </table>
   </div>
-  
+
 </main>
