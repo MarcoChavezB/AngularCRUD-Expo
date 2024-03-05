@@ -9,7 +9,7 @@ export interface UserInterface {
     updated_at: string;
 }
 
-export interface User{
+export interface UserRegistrationInterface{
   name: string;
   email: string;
   password: string;

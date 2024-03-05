@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { User, UserInterface } from '../../../Models/User.interface';
+import { UserInterface } from '../../../Models/User.interface';
 import { UsersService } from '../../../Services/users.service';
 import { CommonModule } from '@angular/common';
-import { response } from 'express';
-import { environment } from '../../../../environments/environment';
 
 
 @Component({
@@ -14,26 +12,26 @@ import { environment } from '../../../../environments/environment';
   ],
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
-  
+
 })
 export class IndexComponent {
 
   Users: UserInterface[] = []
+
 
   constructor(
     private readonly dataSVu: UsersService
   ) { }
 
   ngOnInit(): void {
-    console.log(environment.index)
     this.getUsers()
   }
 
   getUsers(){
     this.dataSVu.getUsers().subscribe(
       response => {
-        this.Users = response
-        console.log(this.Users)
+        this.Users = Object.values(response)
+        console.log(Object.values(response))
       }
     )
   }

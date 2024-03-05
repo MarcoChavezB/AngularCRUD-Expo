@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormLayoutComponent} from "../../Layouts/form-layout/form-layout.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UsersService} from "../../Services/users.service";
-import {User} from "../../Models/User.interface";
+import {UserRegistrationInterface} from "../../Models/User.interface";
 import { Router } from '@angular/router';
 import {NgIf} from "@angular/common";
 
@@ -28,12 +28,12 @@ export class RegisterFormComponent {
 
   onSubmit(){
     const formValue = this.registerForm.value;
-    const user: User = {
+    const user: UserRegistrationInterface = {
       name: formValue.name || '',
       email: formValue.email || '',
       password: formValue.password || '',
     };
-    this.regService.addUser(user).subscribe(
+    this.regService.storeUser(user).subscribe(
       res => {
         this.router.navigate(['']);
       },
