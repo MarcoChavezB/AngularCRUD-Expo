@@ -12,6 +12,7 @@ export class UsersService {
   private urlIndex = environment.index
   private urlStore = environment.store
   private urlLogin = environment.login
+  private urlShow = environment.show
 
   constructor(
     private readonly http: HttpClient
@@ -31,6 +32,10 @@ export class UsersService {
 
   loginUser(user: UserLogin): Observable<LoginResponseInterface>{
     return this.http.post<LoginResponseInterface>(this.urlLogin, user)
+  }
+
+  getUser(id: string): Observable<UserInterface>{
+    return this.http.get<UserInterface>(this.urlShow + id)
   }
 
 }

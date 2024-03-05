@@ -4,12 +4,12 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {UsersService} from "../../Services/users.service";
 import {UserRegistrationInterface} from "../../Models/User.interface";
 import { Router } from '@angular/router';
-import {NgIf} from "@angular/common";
+import {NgClass, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [FormLayoutComponent, ReactiveFormsModule, NgIf],
+  imports: [FormLayoutComponent, ReactiveFormsModule, NgIf, NgClass],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.css'
 })
