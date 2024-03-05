@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {UsersService} from "../../Services/users.service";
 import {UserInterface} from "../../Models/User.interface";
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-show-user',
@@ -14,7 +14,8 @@ export class ShowUserComponent {
   User: UserInterface | undefined
   constructor(
     private getUserService: UsersService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -29,6 +30,9 @@ export class ShowUserComponent {
       response => {
         this.User = response
         console.log(this.User)
+      },
+      error => {
+        this.router.navigate(['/404'])
       }
     )
   }

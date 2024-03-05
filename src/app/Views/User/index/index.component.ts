@@ -31,7 +31,8 @@ export class IndexComponent {
   getUsers(){
     this.dataSVu.getUsers().subscribe(
       response => {
-        this.Users = Object.values(response)
+        this.Users = response 
+        
       }
     )
   }

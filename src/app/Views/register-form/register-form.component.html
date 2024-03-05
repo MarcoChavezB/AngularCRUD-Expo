@@ -46,12 +46,12 @@
     </div>
 
     <button type="submit"
-            [disabled]="!registerForm.valid"
-            [ngClass]="{'bg-gray-500': !registerForm.valid, 'bg-[#1da1f2] hover:bg-[#1da1f2]/90': registerForm.valid}"
+            [disabled]="!registerForm.valid || isSubmitting"
+            [ngClass]="{'bg-gray-500': !registerForm.valid || isSubmitting, 'bg-[#1da1f2] hover:bg-[#1da1f2]/90': registerForm.valid || isSubmitting}"
             class="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 me-2 mb-2">
-
       Submit
     </button>
+
     <div *ngIf="errors" class="alert">
       <div *ngIf="errors.name">
         Error en el nombre: {{ errors.name[0] }}
@@ -65,7 +65,7 @@
     </div>
 
     <p class="text-sm font-light text-gray-500 dark:text-gray-400">
-      Already have an account? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
+      Already have an account? <a routerLink="/home/login" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login here</a>
     </p>
   </form>
 </app-form-layout>

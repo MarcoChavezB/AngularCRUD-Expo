@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { FormLayoutComponent } from "../../Layouts/form-layout/form-layout.component";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { UsersService } from "../../Services/users.service";
-import { UserUpdateInterface } from "../../Models/User.interface";
+import { UserInterface, UserUpdateInterface } from "../../Models/User.interface";
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from "@angular/common";
+import { UserInfo } from 'os';
 
 @Component({
   standalone: true,
@@ -15,6 +16,7 @@ import { NgIf } from "@angular/common";
 })
 export class UpdateComponent {
   updateForm: FormGroup;
+  user!: UserInterface;
   errors: any;
   userId!: number;
 
@@ -28,8 +30,11 @@ export class UpdateComponent {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
+  }
+  ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.userId = +params['id']; // Convertir el parámetro 'id' a un número
+      this.userId = +params['id']; 
+      this.getUserInfo(this.userId.toString()); 
     });
   }
 
@@ -59,4 +64,21 @@ export class UpdateComponent {
       console.log('Formulario no válido');
     }
   }
+
+  getUserInfo(userId: string): void { // Cambiar el tipo de 'userId' a 'string'
+    this.userService.getUser(userId).subscribe(
+      (data: any) => {
+        this.user = data;
+        this.updateForm.patchValue({ 
+          name: this.user.name,
+          email: this.user.email,
+        });
+      },
+      (error: any) => {
+        console.error('Error al obtener la información del usuario:', error);
+      }
+    );
+  };
+ 
 }
+// src/app/Views/update/update.component.ts
