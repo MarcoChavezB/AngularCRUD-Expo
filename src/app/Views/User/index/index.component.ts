@@ -18,6 +18,7 @@ import {Router, RouterLink } from '@angular/router';
 export class IndexComponent {
   loading: boolean = false;
   Users: UserInterface[] = []
+  showDeleteNotification: boolean = false;
 
   constructor(
     private readonly dataSVu: UsersService,
@@ -38,14 +39,11 @@ export class IndexComponent {
   }
   
   deleteUser(id: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar este usuario?'
-  
-)) {
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
       this.dataSVu.deleteUser(id.toString()).subscribe(
         () => {
-          //this.Users = this.Users.filter(user => user.id !== id);
+          this.showDeleteNotification = true; 
           this.getUsers();
-          console.error('se elimino el usuario');
         },
         error => {
           console.error('Error al eliminar usuario:', error);
@@ -54,7 +52,14 @@ export class IndexComponent {
     }
   }
 
+  // Método para cerrar la notificación
+  dismissDeleteNotification(): void {
+    this.showDeleteNotification = false;
+  }
+
+
   edit(Id: number): void {
     this.router.navigate([`/dashboard/update/`,Id]);
   }
+
 }
