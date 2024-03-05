@@ -17,13 +17,13 @@ export class UsersService {
     private readonly http: HttpClient
   ) { }
 
-
+  ngOnInit(){
+    this.getUsers()
+  }
 
   getUsers():Observable<UserInterface[]>{
     return this.http.get<UserInterface[]>(this.urlIndex)
   }
-
-
 
   storeUser(user: UserRegistrationInterface): Observable<UserRegistrationInterface>{
     return this.http.post<UserRegistrationInterface>(this.urlStore, user)

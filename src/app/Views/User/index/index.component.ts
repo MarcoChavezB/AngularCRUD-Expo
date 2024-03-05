@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './index.component.css'
 })
 export class IndexComponent {
-
+  loading: boolean = false;
   Users: UserInterface[] = []
 
   constructor(
