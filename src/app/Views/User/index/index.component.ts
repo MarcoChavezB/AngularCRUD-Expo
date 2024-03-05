@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UserInterface } from '../../../Models/User.interface';
 import { UsersService } from '../../../Services/users.service';
 import { CommonModule } from '@angular/common';
-import {Router, RouterLink} from "@angular/router";
+import {Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -47,9 +47,13 @@ export class IndexComponent {
         },
         error => {
           console.error('Error al eliminar usuario:', error);
-          // Maneja el error de eliminación aquí
+// Maneja el error de eliminación aquí
         }
       );
     }
+  }
+
+  edit(Id: number): void {
+    this.router.navigate([`/dashboard/update/`,Id]);
   }
 }
