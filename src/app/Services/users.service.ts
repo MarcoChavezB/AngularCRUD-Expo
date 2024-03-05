@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {UserRegistrationInterface, UserInterface, UserLogin, statusInterface ,LoginResponseInterface, UserUpdateInterface} from '../Models/User.interface';
+import {UserRegistrationInterface, UserInterface, UserLogin, statusInterface, LoginResponseInterface, UserUpdateInterface, UserDeleteInterface} from '../Models/User.interface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,10 @@ export class UsersService {
   private urlIndex = environment.index
   private urlStore = environment.store
   private urlLogin = environment.login
+  private urlShow = environment.show // Add the missing 'show' property
   private urlUpdate = environment.update
   private urlLogout = environment.logout
+  private urlDelete = environment.delete 
 
   constructor(
     private readonly http: HttpClient,
@@ -35,19 +38,24 @@ export class UsersService {
   loginUser(user: UserLogin): Observable<LoginResponseInterface>{
     return this.http.post<LoginResponseInterface>(this.urlLogin, user)
   }
+  
 
   logoutuser(): Observable<statusInterface>{
     return this.http.get<statusInterface>(this.urlLogout)
   }
 
+  getUser(id: string): Observable<UserInterface> {
+    return this.http.get<UserInterface>(this.urlShow + id)
+  }
   updateUser(user: UserUpdateInterface, userId: number): Observable<UserUpdateInterface> {
-    const url = `${this.urlUpdate}/${userId}`; 
+    const url = `${this.urlUpdate}/${userId}`;
     return this.http.put<UserUpdateInterface>(url, user);
   }
- 
-  deleteUser(userId: number): Observable<{}> {
-    const url = `${this.urlUpdate}/${userId}`; 
-    return this.http.delete(url);
+
+  deleteUser(userId: string): Observable<UserDeleteInterface> {
+    const urlDelete = `${this.urlDelete}${userId}`;
+    return this.http.delete<UserDeleteInterface>(urlDelete);
   }
+  
 
 }

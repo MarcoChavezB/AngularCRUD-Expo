@@ -1,5 +1,7 @@
 // interfaz de usuarios
 
+import exp from "constants";
+
 export interface UserInterface {
     id: number;
     name: string;
@@ -36,4 +38,8 @@ export interface UserUpdateInterface {
 
 export interface statusInterface {
   status: boolean
+}
+
+export interface UserDeleteInterface {
+  id: number;
 }

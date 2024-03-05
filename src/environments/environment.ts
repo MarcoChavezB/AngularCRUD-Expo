@@ -5,5 +5,6 @@ export const environment = {
   login: 'http://127.0.0.1:8000/api/login',
   logout: 'http://127.0.0.1:8000/api/logout',
   update: 'http://127.0.0.1:8000/api/update',// el barto BL
-  delete: (id: string) => `http://127.0.0.1:8000/api/delete/${id}`
+  delete: 'http://127.0.0.1:8000/api/delete/',
+  show: 'http://127.0.0.1:8000/api/show/'
 };

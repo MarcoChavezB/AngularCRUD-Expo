@@ -1,0 +1,30 @@
+<div class="w-64 mx-auto bg-[#20354b] rounded-2xl px-8 py-6 shadow-lg">
+  <div class="flex items-center justify-between">
+      <span class="text-emerald-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
+              </svg>
+            </span>
+  </div>
+  <div class="mt-6 w-fit mx-auto">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12" viewBox="0 0 20 20" fill="white">
+      <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+    </svg>
+  </div>
+
+  <div class="mt-8 ">
+    <p class="text-white font-bold tracking-wide break-all">Nombre: {{User?.name}}</p>
+  </div>
+  <div class="mt-8">
+    <p class="text-white font-bold tracking-wide break-all">Email: {{User?.email}}</p>
+  </div>
+  <div class="mt-8">
+    <p class="text-white font-bold tracking-wide break-all">Verified at: {{User?.email_verified_at}}</p>
+  </div>
+  <div class="mt-8">
+    <p class="text-white font-bold tracking-wide break-all">Created at: {{User?.created_at}}</p>
+  </div>
+
+
+</div>
+
