@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environments.local';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {User, UserInterface, UserLogin, LoginResponseInterface} from '../Models/User.interface';
+import {UserRegistrationInterface, UserInterface, UserLogin, LoginResponseInterface} from '../Models/User.interface';
 
 
 @Injectable({
@@ -17,12 +17,16 @@ export class UsersService {
     private readonly http: HttpClient
   ) { }
 
+
+
   getUsers():Observable<UserInterface[]>{
     return this.http.get<UserInterface[]>(this.urlIndex)
   }
 
-  addUser(user: User): Observable<User>{
-    return this.http.post<User>(this.urlStore, user)
+
+
+  storeUser(user: UserRegistrationInterface): Observable<UserRegistrationInterface>{
+    return this.http.post<UserRegistrationInterface>(this.urlStore, user)
   }
 
   loginUser(user: UserLogin): Observable<LoginResponseInterface>{
