@@ -43,6 +43,7 @@ export class IndexComponent {
       this.dataSVu.deleteUser(id.toString()).subscribe(
         () => {
           //this.Users = this.Users.filter(user => user.id !== id);
+          this.getUsers();
           console.error('se elimino el usuario');
         },
         error => {
