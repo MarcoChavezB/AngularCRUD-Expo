@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import {FormLayoutComponent} from "../../Layouts/form-layout/form-layout.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UsersService} from "../../Services/users.service";
-import {User} from "../../Models/User.interface";
+import {UserRegistrationInterface} from "../../Models/User.interface";
 import { Router } from '@angular/router';
 import {NgIf} from "@angular/common";
+import {AuthService} from "../../Services/auth.service";
+
 
 @Component({
   selector: 'app-register-form',
@@ -22,20 +24,29 @@ export class RegisterFormComponent {
   })
   errors: any;
   constructor(
+    private authService: AuthService,
     private regService: UsersService,
     private router: Router
   ) {}
 
+  ngOnInit() {
+    this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.router.navigate(['']);
+      }
+    });
+  }
+  
   onSubmit(){
     const formValue = this.registerForm.value;
-    const user: User = {
+    const user: UserRegistrationInterface = {
       name: formValue.name || '',
       email: formValue.email || '',
       password: formValue.password || '',
     };
-    this.regService.addUser(user).subscribe(
+    this.regService.storeUser(user).subscribe(
       res => {
-        this.router.navigate(['']);
+        this.router.navigate(['/home/login']);
       },
       err => {
         if (err.error.error){

@@ -9,9 +9,6 @@ export class LoggingInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
     console.log('Solicitud saliente:', req);
-
-    console.log('Cabeceras de la solicitud:', req.headers);
-
     return next.handle(req);
   }
 }

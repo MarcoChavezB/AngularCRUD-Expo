@@ -9,7 +9,7 @@ export interface UserInterface {
     updated_at: string;
 }
 
-export interface User{
+export interface UserRegistrationInterface{
   name: string;
   email: string;
   password: string;
@@ -25,4 +25,15 @@ export interface LoginResponseInterface {
   data: UserInterface;
   jwt: string;
   token_type: string;
+}
+
+export interface UserUpdateInterface {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}
+
+export interface statusInterface {
+  status: boolean
 }

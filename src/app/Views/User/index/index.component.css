@@ -1,0 +1,18 @@
+.loadingComp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    animation: fadeIn 0.5s;
+}
