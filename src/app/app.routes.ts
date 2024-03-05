@@ -6,6 +6,7 @@ import {RegisterFormComponent} from "./Views/register-form/register-form.compone
 import {PageNotFoundComponent} from "./Views/page-not-found/page-not-found.component";
 import {LoginFormComponent} from "./Components/login-form/login-form.component";
 import { UpdateComponent } from './Views/update/update.component';
+import { DeleteComponent } from './Views/delete/delete.component';
 export const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent,
     children: [
@@ -14,7 +15,7 @@ export const routes: Routes = [
       {path: 'update/:id', component: UpdateComponent },
       {path: 'users', component: IndexComponent, title: 'Users',
       children: [
-        { path: 'delete/:id', component: DeleteComponent, title: 'Delete' } // Ruta de eliminación como hijo de 'users' con parámetro
+        { path: 'delete/:id', component: DeleteComponent, title: 'Delete' }
       ]},
       {path: 'login', component: LoginFormComponent, title: 'login'},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
