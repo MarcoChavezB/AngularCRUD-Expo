@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {UserRegistrationInterface, UserInterface, UserLogin, LoginResponseInterface, UserUpdateInterface} from '../Models/User.interface';
+import {UserRegistrationInterface, UserInterface, UserLogin, LoginResponseInterface, UserUpdateInterface, UserDeleteInterface} from '../Models/User.interface';
 
 
 @Injectable({
@@ -13,6 +13,7 @@ export class UsersService {
   private urlStore = environment.store
   private urlLogin = environment.login
   private urlUpdate = environment.update
+  private urlDelete = environment.delete 
 
   constructor(
     private readonly http: HttpClient
@@ -39,9 +40,10 @@ export class UsersService {
     return this.http.put<UserUpdateInterface>(url, user);
   }
  
-  deleteUser(userId: number): Observable<{}> {
-    const url = `${this.urlUpdate}/${userId}`; 
-    return this.http.delete(url);
+  deleteUser(userId: number): Observable<UserDeleteInterface> {
+    const urlDelete = `${this.urlDelete}/${userId}`; 
+    console.log(urlDelete); 
+    return this.http.delete<UserDeleteInterface>(urlDelete, {responseType: 'json'});
   }
 
 }

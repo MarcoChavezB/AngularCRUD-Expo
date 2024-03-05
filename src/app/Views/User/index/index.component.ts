@@ -33,12 +33,14 @@ export class IndexComponent {
     )
   }
   deleteUser(id: number) {
-    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?'
+  
+)) {
       this.dataSVu.deleteUser(id).subscribe(
         () => {
           console.error('se elimino el usuario');
-          // Eliminación exitosa, actualiza la lista de usuarios
-          this.getUsers();
+          
+          
         },
         error => {
           console.error('Error al eliminar usuario:', error);
