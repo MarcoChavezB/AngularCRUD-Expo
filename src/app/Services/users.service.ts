@@ -38,5 +38,10 @@ export class UsersService {
     const url = `${this.urlUpdate}/${userId}`; 
     return this.http.put<UserUpdateInterface>(url, user);
   }
+ 
+  deleteUser(userId: number): Observable<{}> {
+    const url = `${this.urlUpdate}/${userId}`; 
+    return this.http.delete(url);
+  }
 
 }
