@@ -26,3 +26,10 @@ export interface LoginResponseInterface {
   jwt: string;
   token_type: string;
 }
+
+export interface UserUpdateInterface {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+}
