@@ -46,10 +46,9 @@ export class UsersService {
   }
 
  
-  deleteUser(userId: number): Observable<UserDeleteInterface> {
-    const urlDelete = `${this.urlDelete}/${userId}`; 
-    console.log(urlDelete); 
-    return this.http.delete<UserDeleteInterface>(urlDelete, {responseType: 'json'});
+  deleteUser(userId: string): Observable<UserDeleteInterface> {
+    return this.http.delete<UserInterface>(this.urlShow + userId)
   }
+  
 
 }
