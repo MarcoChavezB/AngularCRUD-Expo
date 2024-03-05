@@ -36,18 +36,17 @@ export class IndexComponent {
     )
   }
   
-  deleteUser(id: number) {
+  deleteUser(id: number): void {
     if (confirm('¿Estás seguro de que quieres eliminar este usuario?'
   
 )) {
       this.dataSVu.deleteUser(id.toString()).subscribe(
         () => {
-          this.Users = this.Users.filter(user => user.id !== id);
+          //this.Users = this.Users.filter(user => user.id !== id);
           console.error('se elimino el usuario');
         },
         error => {
           console.error('Error al eliminar usuario:', error);
-// Maneja el error de eliminación aquí
         }
       );
     }
