@@ -5,6 +5,7 @@ import {UserLogin} from "../../Models/User.interface";
 import {UsersService} from "../../Services/users.service";
 import {AuthService} from "../../Services/auth.service";
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -21,12 +22,20 @@ export class LoginFormComponent {
   public passwordVerify = false;
   constructor( 
     private loginService: UsersService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
     ) {
     this.email = '';
     this.password = '';
   }
 
+  ngOnInit() {
+    this.authService.isAuthenticated().subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.router.navigate(['']);
+      }
+    });
+  }
   onSubmit() {
     this.notfound = false;
     this.error = false;

@@ -31,10 +31,10 @@
             </tr>
         </thead>
         <tbody>
-          
+
           <tr *ngFor="let user of Users" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {{user.name}}
+              <a [routerLink]="['/dashboard/show', user.id]">{{user.name}}</a>
             </th>
             <td class="px-6 py-4">
               {{user.email}}
@@ -47,23 +47,23 @@
             </td>
             <td class="px-6 py-4">
               <a href="#" >
-            
+
               </a>
-              <a href="#" (click)="deleteUser(user.id)">
+              <a (click)="deleteUser(user.id)">
                 <svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
                 </svg>
               </a>
 
-              <a href="#" ><svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <a (click)="edit(user.id)" ><svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10.8 17.8-6.4 2.1 2.1-6.4m4.3 4.3L19 9a3 3 0 0 0-4-4l-8.4 8.6m4.3 4.3-4.3-4.3m2.1 2.1L15 9.1m-2.1-2 4.2 4.2"/>
               </svg></a>
 
             </td>
           </tr>
-          
+
         </tbody>
     </table>
   </div>
-  
+
 </main>

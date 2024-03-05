@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from "./users.service";
+import { Observable, map, catchError, of } from 'rxjs';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -7,19 +10,25 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
-  constructor(private router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly usersservice: UsersService
+    ) {}
 
   saveTokenResponse(jwt: string, user: any) {
+  if (typeof window !== 'undefined') {
     const userString = JSON.stringify(user);
-    
     localStorage.setItem('user', userString);
     localStorage.setItem('access_token', jwt);
-
     this.router.navigate(['']);
   }
+}
 
   getToken(): string | null {
-    return localStorage.getItem('access_token');
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('access_token');
+    }
+    return null;
   }
 
   getUser() {
@@ -31,15 +40,33 @@ export class AuthService {
   }
   
 
-  isAuthenticated(): boolean {
+  isAuthenticated(): Observable<boolean> {
     const token = this.getToken();
-    
-    return token ? true : false;
+    if (!token) {
+      return of(false); 
+    }
+  
+    return this.usersservice.getUsers().pipe(
+      map(() => true),
+      catchError(() => {
+        return of(false);
+      })
+    );
   }
+  
 
   logout() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('user');
-    this.router.navigate(['login']);
+    if (typeof window !== 'undefined') {
+      return this.usersservice.logoutuser().subscribe(
+        res => {
+          if (res.status == true) {
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user');
+            this.router.navigate(['home/login']);
+          }
+        }
+      )
+    }
+    return false
   }
 }
