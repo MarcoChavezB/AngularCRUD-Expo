@@ -12,7 +12,10 @@ export const routes: Routes = [
       {path: 'welcome', component: WelcomeComponent, title: 'Welcome'},
       {path: 'register', component: RegisterFormComponent, title: 'Register'},
       {path: 'update/:id', component: UpdateComponent },
-      {path: 'users', component: IndexComponent, title: 'Users',},
+      {path: 'users', component: IndexComponent, title: 'Users',
+      children: [
+        { path: 'delete/:id', component: DeleteComponent, title: 'Delete' } // Ruta de eliminación como hijo de 'users' con parámetro
+      ]},
       {path: 'login', component: LoginFormComponent, title: 'login'},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
     ]
