@@ -4,17 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {User, UserInterface, UserLogin, LoginResponseInterface} from '../Models/User.interface';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
+  
   private urlIndex = environment.index
   private urlStore = environment.store
   private urlLogin = environment.login
 
   constructor(
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+
   ) { }
 
   getUsers():Observable<UserInterface[]>{

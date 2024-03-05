@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsersService } from "./users.service";
+import { Observable, map, catchError, of } from 'rxjs';
+import { response } from 'express';
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +10,18 @@ import { Router } from '@angular/router';
 
 export class AuthService {
 
-  constructor(private router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly usersservice: UsersService
+    ) {}
 
   saveTokenResponse(jwt: string, user: any) {
     const userString = JSON.stringify(user);
-    
+
     localStorage.setItem('user', userString);
     localStorage.setItem('access_token', jwt);
-
     this.router.navigate(['']);
+  
   }
 
   getToken(): string | null {
@@ -31,11 +37,20 @@ export class AuthService {
   }
   
 
-  isAuthenticated(): boolean {
+  isAuthenticated(): Observable<boolean> {
     const token = this.getToken();
-    
-    return token ? true : false;
+    if (!token) {
+      return of(false); 
+    }
+  
+    return this.usersservice.getUsers().pipe(
+      map(() => true),
+      catchError(() => {
+        return of(false);
+      })
+    );
   }
+  
 
   logout() {
     localStorage.removeItem('access_token');
