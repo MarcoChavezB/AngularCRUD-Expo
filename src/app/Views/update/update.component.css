@@ -1,7 +1,22 @@
+.label-error {
+  animation: shake 0.5s;
+}
+
+@keyframes glow {
+  0% { box-shadow: 0 0 0 0 rgba(239, 48, 66, 0.7); }
+  50% { box-shadow: 0 0 20px 10px rgba(239, 48, 66, 0.7); }
+  100% { box-shadow: 0 0 0 0 rgba(239, 48, 66, 0.7); }
+}
+
+.invalid-input {
+  animation: glow 1s infinite alternate;
+  border-color: #ef3042; /* Cambia el color del borde para resaltar el error */
+}
+
+
 .alert {
-    color: #ef3042;
-    border-color: #f5c6cb;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-  }
-  
+  color: #ef3042;
+  border-color: #f5c6cb;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}

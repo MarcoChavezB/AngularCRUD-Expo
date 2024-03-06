@@ -1,18 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { FormLayoutComponent } from "../../Layouts/form-layout/form-layout.component";
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { UsersService } from "../../Services/users.service";
 import { UserInterface, UserUpdateInterface } from "../../Models/User.interface";
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from "@angular/common";
-import { UserInfo } from 'os';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 @Component({
-  standalone: true,
-  imports: [FormLayoutComponent, ReactiveFormsModule, NgIf],
-  templateUrl: './update.component.html',
-  styleUrl: './update.component.css',
   selector: 'app-update-form',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.css']
 })
 export class UpdateComponent {
   updateForm: FormGroup;
@@ -31,6 +29,7 @@ export class UpdateComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
   }
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.userId = +params['id']; 
@@ -65,7 +64,7 @@ export class UpdateComponent {
     }
   }
 
-  getUserInfo(userId: string): void { // Cambiar el tipo de 'userId' a 'string'
+  getUserInfo(userId: string): void { 
     this.userService.getUser(userId).subscribe(
       (data: any) => {
         this.user = data;
@@ -78,7 +77,16 @@ export class UpdateComponent {
         console.error('Error al obtener la información del usuario:', error);
       }
     );
-  };
- 
+  }
 }
-// src/app/Views/update/update.component.ts
+
+@NgModule({
+  declarations: [
+    UpdateComponent
+  ],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule
+  ]
+})
+export class UpdateModule { }
