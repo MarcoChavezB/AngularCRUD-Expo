@@ -19,6 +19,7 @@ export class IndexComponent {
   loading: boolean = false;
   Users: UserInterface[] = []
   showDeleteNotification: boolean = false;
+  notificationMessage: string = '';
 
   constructor(
     private readonly dataSVu: UsersService,
@@ -42,7 +43,8 @@ export class IndexComponent {
     if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
       this.dataSVu.deleteUser(id.toString()).subscribe(
         () => {
-          this.showDeleteNotification = true; 
+          this.notificationMessage = 'Usuario eliminado correctamente.';
+          this.showDeleteNotification = true;
           this.getUsers();
         },
         error => {
@@ -60,6 +62,8 @@ export class IndexComponent {
 
   edit(Id: number): void {
     this.router.navigate([`/dashboard/update/`,Id]);
+    this.notificationMessage = 'Usuario Actualizado correctamente.';
+          this.showDeleteNotification = true;
   }
 
 }
