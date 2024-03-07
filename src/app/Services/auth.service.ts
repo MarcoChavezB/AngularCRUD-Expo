@@ -46,7 +46,7 @@ export class AuthService {
       return of(false); 
     }
   
-    return this.usersservice.getUsers().pipe(
+    return this.usersservice.authenticate().pipe(
       map(() => true),
       catchError(() => {
         return of(false);
@@ -54,6 +54,14 @@ export class AuthService {
     );
   }
   
+  resetAll(){
+    if (typeof window !== 'undefined') {
+
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+
+    }
+  }
 
   logout() {
     if (typeof window !== 'undefined') {

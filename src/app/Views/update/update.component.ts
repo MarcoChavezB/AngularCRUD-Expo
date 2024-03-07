@@ -6,10 +6,10 @@ import { UserInterface, UserUpdateInterface } from "../../Models/User.interface"
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from "@angular/common";
 import { UserInfo } from 'os';
-
+import { CommonModule } from "@angular/common"; 
 @Component({
   standalone: true,
-  imports: [FormLayoutComponent, ReactiveFormsModule, NgIf],
+  imports: [FormLayoutComponent, ReactiveFormsModule, NgIf, CommonModule],
   templateUrl: './update.component.html',
   styleUrl: './update.component.css',
   selector: 'app-update-form',
@@ -65,7 +65,7 @@ export class UpdateComponent {
     }
   }
 
-  getUserInfo(userId: string): void { // Cambiar el tipo de 'userId' a 'string'
+  getUserInfo(userId: string): void { 
     this.userService.getUser(userId).subscribe(
       (data: any) => {
         this.user = data;
@@ -79,6 +79,5 @@ export class UpdateComponent {
       }
     );
   };
- 
+  
 }
-// src/app/Views/update/update.component.ts

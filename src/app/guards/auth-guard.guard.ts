@@ -17,12 +17,14 @@ export class AuthGuard implements CanActivate {
         map(e => {
           const isAuthenticated = !!e;
           if (!isAuthenticated){
+            this.authService.resetAll()
             this.router.navigate(['/home']);
           }
           return isAuthenticated;
         }
         ),
         catchError(() => {
+          this.authService.resetAll()
           this.router.navigate(['/home']);
           return of(false);
         })

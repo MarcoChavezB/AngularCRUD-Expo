@@ -1,7 +1,7 @@
 <main>
   <div *ngIf="showDeleteNotification" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
-    <strong class="font-bold">Usuario eliminado correctamente.</strong>
-    <span class="block sm:inline">El usuario ha sido eliminado correctamente.</span>
+    <strong class="font-bold">{{ notificationMessage }}</strong>
+    <span class="block sm:inline">{{ notificationMessage }}</span>
     <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
       <svg (click)="dismissDeleteNotification()" class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1 1 0 0 1-1.414 1.414l-3.535-3.536-3.536 3.536a1 1 0 1 1-1.414-1.414l3.536-3.535-3.536-3.536a1 1 0 0 1 1.414-1.414l3.536 3.536 3.535-3.536a1 1 0 0 1 1.414 1.414l-3.536 3.536 3.536 3.535z"/></svg>
     </span>
@@ -17,13 +17,13 @@
                 <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                     Name
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-black bg-blue-90">
                     Email
                 </th>
                 <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                     Create
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-black">
                     Update
                 </th>
                 <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
@@ -51,12 +51,12 @@
 
               </a>
               <a (click)="deleteUser(user.id)">
-                <svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white icon-highlight icon-dance" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
                 </svg>
               </a>
 
-              <a (click)="edit(user.id)" ><svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+              <a (click)="edit(user.id)" ><svg class="inline-block mr-4 w-6 h-6 text-gray-800 dark:text-white icon-dance icon-highlightt" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m10.8 17.8-6.4 2.1 2.1-6.4m4.3 4.3L19 9a3 3 0 0 0-4-4l-8.4 8.6m4.3 4.3-4.3-4.3m2.1 2.1L15 9.1m-2.1-2 4.2 4.2"/>
               </svg></a>
 
