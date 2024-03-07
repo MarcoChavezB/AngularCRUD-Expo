@@ -7,12 +7,37 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgIf } from "@angular/common";
 import { UserInfo } from 'os';
 import { CommonModule } from "@angular/common"; 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  keyframes
+} from '@angular/animations';
 @Component({
   standalone: true,
   imports: [FormLayoutComponent, ReactiveFormsModule, NgIf, CommonModule],
   templateUrl: './update.component.html',
   styleUrl: './update.component.css',
   selector: 'app-update-form',
+  animations: [
+    trigger('shake', [
+      transition('* => *', [ 
+        animate('1s', keyframes([
+          style({ transform: 'translateX(0)' }),
+          style({ transform: 'translateX(-10px)' }), 
+          style({ transform: 'translateX(10px)' }), 
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(10px)' }), 
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(10px)' }),
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(0)' }),
+        ]))
+      ])
+    ])
+  ]
 })
 export class UpdateComponent {
   updateForm: FormGroup;
