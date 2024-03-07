@@ -65,7 +65,7 @@ export class UpdateComponent {
     }
   }
 
-  getUserInfo(userId: string): void { // Cambiar el tipo de 'userId' a 'string'
+  getUserInfo(userId: string): void { 
     this.userService.getUser(userId).subscribe(
       (data: any) => {
         this.user = data;
@@ -81,4 +81,3 @@ export class UpdateComponent {
   };
   
 }
-// src/app/Views/update/update.component.ts
