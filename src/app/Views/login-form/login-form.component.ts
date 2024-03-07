@@ -7,6 +7,14 @@ import {AuthService} from "../../Services/auth.service";
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  keyframes
+} from '@angular/animations';
 
 @Component({
   selector: 'app-login-form',
@@ -14,6 +22,23 @@ import { RouterLink } from '@angular/router';
   imports: [FormLayoutComponent, FormsModule, CommonModule, RouterLink],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.css',
+  animations: [
+    trigger('shake', [
+      transition('* => *', [ 
+        animate('1s', keyframes([
+          style({ transform: 'translateX(0)' }),
+          style({ transform: 'translateX(-10px)' }), 
+          style({ transform: 'translateX(10px)' }), 
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(10px)' }), 
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(10px)' }),
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(0)' }),
+        ]))
+      ])
+    ])
+  ]
 })
 export class LoginFormComponent {
   public email = '';

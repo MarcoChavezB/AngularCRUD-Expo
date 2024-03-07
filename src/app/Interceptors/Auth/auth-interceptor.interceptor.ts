@@ -14,6 +14,11 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const authToken = this.authService.getToken(); 
 
+
+    if (this.shouldExclude(req)) {
+      return next.handle(req);
+    }
+    
     if (authToken) {
       req = req.clone({
         setHeaders: {
@@ -37,6 +42,14 @@ export class AuthInterceptor implements HttpInterceptor {
     );
 
   } 
+
+
+  private shouldExclude(req: HttpRequest<any>): boolean {
+    if (req.url.endsWith('/login')) {
+      return true; 
+    }
+    return false;
+  }
  
 }
 
