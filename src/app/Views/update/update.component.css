@@ -17,7 +17,7 @@
   }
 }
 
-/* Efecto de hover para el botón */
+
 .hover-animate {
   transition: background-color 0.3s ease; 
 }
@@ -26,7 +26,6 @@
   background-color: #00cc00; 
 }
 
-/* Animación de temblor para los campos con error */
 .error {
   animation: shake 0.4s ease-in-out; 
 }

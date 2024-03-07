@@ -3,11 +3,29 @@ import { UserInterface } from '../../../Models/User.interface';
 import { UsersService } from '../../../Services/users.service';
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink } from '@angular/router';
+import { trigger, state, style, animate, transition } from '@angular/animations';
+
 
 
 @Component({
   selector: 'app-index',
   standalone: true,
+  animations: [
+    trigger('dance', [
+      state('normal', style({
+        transform: 'translateX(0)'
+      })),
+      state('left', style({
+        transform: 'translateX(-5px)'
+      })),
+      state('right', style({
+        transform: 'translateX(5px)'
+      })),
+      transition('* => *', [
+        animate('0.5s')
+      ])
+    ])
+  ],
   imports: [
     CommonModule,
     RouterLink
@@ -15,9 +33,10 @@ import {Router, RouterLink } from '@angular/router';
   templateUrl: './index.component.html',
   styleUrl: './index.component.css'
 })
+
 export class IndexComponent {
   loading: boolean = false;
-  Users: UserInterface[] = []
+  Users: UserInterface[] = [];
   showDeleteNotification: boolean = false;
   notificationMessage: string = '';
 
@@ -25,6 +44,17 @@ export class IndexComponent {
     private readonly dataSVu: UsersService,
     private router: Router
   ) { }
+
+  danceState = 'normal';
+
+  onMouseEnter() {
+    this.danceState = 'left';
+  }
+
+  onMouseLeave() {
+    this.danceState = 'right';
+  }
+
 
   ngOnInit(): void {
     this.getUsers()
