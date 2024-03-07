@@ -26,15 +26,15 @@
             Password must be at least 8 characters long.
             </div>
         </div>
-        <div class="text-red-500" *ngIf="notfound">
+        <div class="text-red-500" *ngIf="notfound" [@shake]="notfound">
             User Not Found.
         </div>
 
-        <div class="text-red-500" *ngIf="passwordVerify">
+        <div class="text-red-500" *ngIf="passwordVerify" [@shake]="passwordVerify">
             Incorrect password.
         </div>
 
-        <div class="text-red-500" *ngIf="error">
+        <div class="text-red-500" *ngIf="error" [@shake]="error">
             Server error.
         </div>
 

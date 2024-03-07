@@ -26,6 +26,7 @@ export class UsersService {
   private urlUpdate = environment.update
   private urlLogout = environment.logout
   private urlDelete = environment.delete 
+  private urlAuthenticate = environment.authenticate
 
   constructor(
     private readonly http: HttpClient,
@@ -65,6 +66,9 @@ export class UsersService {
     const urlDelete = `${this.urlDelete}${userId}`;
     return this.http.delete<UserDeleteInterface>(urlDelete);
   }
-  
+
+  authenticate(): Observable<statusInterface> {
+    return this.http.get<statusInterface>(this.urlAuthenticate)
+  }
 
 }

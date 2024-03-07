@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .alert{
     position: absolute;
     width: 30%;
@@ -23,3 +24,48 @@
         right: 0;
     }
 }
+=======
+.loadingComp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5rem;
+    animation: fadeIn 0.5s;
+}
+
+  .icon-highlight:hover {
+    color: #ff0000; 
+  }
+  .icon-highlightt:hover {
+    color: #fffb00; 
+  }
+
+  @keyframes dance {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+  }
+  
+  .icon-dance {
+    transition: transform 0.3s ease;
+  }
+  
+  .icon-dance:hover {
+    animation: dance 0.5s infinite;
+  }
+  
+  
+>>>>>>> bf2dfe4a0fcc281a0a9a6699892a21396f03a0e0
