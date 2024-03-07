@@ -2,7 +2,16 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {UserRegistrationInterface, UserInterface, UserLogin, statusInterface, LoginResponseInterface, UserUpdateInterface, UserDeleteInterface} from '../Models/User.interface';
+import {UserRegistrationInterface, 
+        UserInterface ,
+        UserLogin, 
+        statusInterface, 
+        LoginResponseInterface, 
+        UserUpdateInterface, 
+        UserDeleteInterface, 
+        UserResults,
+      } 
+from '../Models/User.interface';
 
 
 @Injectable({
@@ -20,15 +29,15 @@ export class UsersService {
 
   constructor(
     private readonly http: HttpClient,
-
   ) { }
 
   ngOnInit(){
     this.getUsers()
+    console.log(environment.index)
   }
 
-  getUsers():Observable<UserInterface[]>{
-    return this.http.get<UserInterface[]>(this.urlIndex)
+  getUsers() : Observable<UserResults>{
+    return this.http.get<UserResults>(this.urlIndex)
   }
 
   storeUser(user: UserRegistrationInterface): Observable<UserRegistrationInterface>{

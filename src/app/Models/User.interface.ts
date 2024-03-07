@@ -1,7 +1,4 @@
 // interfaz de usuarios
-
-import exp from "constants";
-
 export interface UserInterface {
     id: number;
     name: string;
@@ -10,6 +7,14 @@ export interface UserInterface {
     created_at: string;
     updated_at: string;
 }
+
+export interface UserResults{
+   Users: UserInterface[]
+}
+
+
+
+
 
 export interface UserRegistrationInterface{
   name: string;

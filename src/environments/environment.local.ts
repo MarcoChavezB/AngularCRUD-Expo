@@ -6,5 +6,6 @@ export const environment = {
   login: 'http://127.0.0.1:8000/api/login',
   logout: 'http://127.0.0.1:8000/api/logout',
   update: 'http://127.0.0.1:8000/api/update', 
-  delete: 'http://127.0.0.1:8000/api/delete/'
+  delete: 'http://127.0.0.1:8000/api/delete/',
+  show: 'http://127.0.0.1:8000/api/show/'
 };

@@ -6,6 +6,7 @@ import {UserRegistrationInterface} from "../../Models/User.interface";
 import {Router, RouterLink} from '@angular/router';
 import {AuthService} from "../../Services/auth.service";
 import {NgClass, NgIf} from "@angular/common";
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-register-form',
@@ -34,10 +35,11 @@ export class RegisterFormComponent {
         this.router.navigate(['']);
       }
     });
+    console.log(environment.index)
   }
 
   public isSubmitting = false;
-
+ 
   onSubmit(){
     this.isSubmitting = true;
     const formValue = this.registerForm.value;
