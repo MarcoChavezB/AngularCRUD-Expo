@@ -1,26 +1,35 @@
 <main>
-<!-- si no hay usuarios -->
-<div 
-*ngIf="mostrarAlerta"
-class="alert">
-  <app-alert [message]="message"></app-alert>
-</div>
+  <div 
+  *ngIf="mostrarAlerta"
+  class="alert">
+    <app-alert [message]="message"></app-alert>
+  </div>
 
+  <div *ngIf="showDeleteNotification" class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+    <strong class="font-bold">{{ notificationMessage }}</strong>
+    <span class="block sm:inline">{{ notificationMessage }}</span>
+    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+      <svg (click)="dismissDeleteNotification()" class="fill-current h-6 w-6 text-green-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Close</title><path d="M14.348 14.849a1 1 0 0 1-1.414 1.414l-3.535-3.536-3.536 3.536a1 1 0 1 1-1.414-1.414l3.536-3.535-3.536-3.536a1 1 0 0 1 1.414-1.414l3.536 3.536 3.535-3.536a1 1 0 0 1 1.414 1.414l-3.536 3.536 3.536 3.535z"/></svg>
+    </span>
+  </div>
   <div
+
+  *ngIf="Users.length && !loading"
    class="relative overflow-x-auto shadow-md sm:rounded-lg">
+   
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                     Name
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-black bg-blue-90">
                     Email
                 </th>
                 <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                     Create
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th scope="col" class="px-6 py-3 text-black">
                     Update
                 </th>
                 <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">

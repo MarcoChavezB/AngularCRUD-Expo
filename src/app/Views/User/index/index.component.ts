@@ -18,7 +18,9 @@ import { AlertComponent } from '../../../Components/Alerts/alert/alert.component
 })
 export class IndexComponent {
   loading: boolean = false;
-  public Users: UserInterface[] = [];
+  Users: UserInterface[] = []
+  showDeleteNotification: boolean = false;
+  notificationMessage: string = '';
   public message: string = '';
   mostrarAlerta: boolean = false;
 
@@ -47,13 +49,12 @@ export class IndexComponent {
   
   
   deleteUser(id: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar este usuario?'
-)) {
+    if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
       this.dataSVu.deleteUser(id.toString()).subscribe(
         () => {
-          //this.Users = this.Users.filter(user => user.id !== id);
+          this.notificationMessage = 'Usuario eliminado correctamente.';
+          this.showDeleteNotification = true;
           this.getUsers();
-          console.error('se elimino el usuario');
         },
         error => {
           console.error('Error al eliminar usuario:', error);
@@ -62,11 +63,17 @@ export class IndexComponent {
     }
   }
 
-  edit(Id: number): void {
-    this.router.navigate([`/dashboard/update/`,Id]);
+  // Método para cerrar la notificación
+  dismissDeleteNotification(): void {
+    this.showDeleteNotification = false;
   }
 
 
+  edit(Id: number): void {
+    this.router.navigate([`/dashboard/update/`,Id]);
+    this.notificationMessage = 'Usuario Actualizado correctamente.';
+          this.showDeleteNotification = true;
+  }
 
   showAlert(message: string ){
     this.message = message;

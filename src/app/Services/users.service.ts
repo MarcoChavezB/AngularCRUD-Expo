@@ -22,7 +22,7 @@ export class UsersService {
   private urlIndex = environment.index
   private urlStore = environment.store
   private urlLogin = environment.login
-  private urlShow = environment.show // Add the missing 'show' property
+  private urlShow = environment.show 
   private urlUpdate = environment.update
   private urlLogout = environment.logout
   private urlDelete = environment.delete 
