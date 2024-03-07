@@ -9,4 +9,3 @@ import {routes} from "../../app.routes";
   styleUrl: './welcome.component.css'
 })
 export class WelcomeComponent {}
-

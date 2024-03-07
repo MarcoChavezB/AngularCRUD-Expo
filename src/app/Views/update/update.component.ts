@@ -53,7 +53,7 @@ export class UpdateComponent {
           console.log('Usuario actualizado correctamente');
           this.router.navigate(['/dashboard/users']);
         },
-        (error: any) => {
+        (error: any) => { 
           console.log('Error al actualizar el usuario:', error);
           if (error.error && error.error.error) {
             this.errors = error.error.error;
