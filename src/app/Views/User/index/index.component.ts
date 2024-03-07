@@ -3,13 +3,10 @@ import { UserInterface } from '../../../Models/User.interface';
 import { UsersService } from '../../../Services/users.service';
 import { CommonModule } from '@angular/common';
 import {Router, RouterLink } from '@angular/router';
-<<<<<<< HEAD
 import { AlertComponent } from '../../../Components/Alerts/alert/alert.component';
-=======
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
->>>>>>> bf2dfe4a0fcc281a0a9a6699892a21396f03a0e0
 
 @Component({
   selector: 'app-index',
